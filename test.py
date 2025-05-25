@@ -17,4 +17,6 @@ class_counts = df["CLASS"].value_counts()
 output_path = '/Users/anastasiavaznikova/Desktop/University/Kursova_code/binary_class_dataset.csv'
 df.to_csv(output_path, index=False)
 
+print(df.head(150))
+
 unique_classes, class_counts, output_path

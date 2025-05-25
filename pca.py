@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+import joblib
 
 
 file_path = "/Users/anastasiavaznikova/Desktop/University/Kursova_code/balanced1_dataset.csv"
@@ -11,6 +12,8 @@ df = pd.read_csv(file_path)
 
 features = df.drop(columns=["CLASS"])
 
+print("Порядок ознак для scaler + PCA:")
+print(features.columns.tolist())
 
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(features)
@@ -32,3 +35,6 @@ plt.figure(figsize=(10, 8))
 sns.heatmap(correlation_matrix_pca, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
 plt.title("Кореляційна матриця після PCA")
 plt.show()
+
+joblib.dump(scaler, "/Users/anastasiavaznikova/Desktop/University/Kursova_code/scaler_pca.pkl")
+joblib.dump(pca, "/Users/anastasiavaznikova/Desktop/University/Kursova_code/pca.pkl")
